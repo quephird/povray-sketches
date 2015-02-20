@@ -48,9 +48,6 @@ plane{ <0,1,0>, 0
               } // end of texture
      } // end of plane
 
-//---------------------------------------------------------------------------
-//---------------------------- objects in scene ----------------------------
-//---------------------------------------------------------------------------
 
 #macro NailPolishBottle (nailColor)
 union {   
@@ -64,6 +61,26 @@ superellipsoid { <1.0, 0.1>
         rotate <90,0,0>
         translate <0,1.5,0>
         }
+        
+// Brand initial on top of cap
+object { 
+Bevelled_Text ("texgyreadventor-bold.ttf", // font file
+               "d",  // text
+               10 ,      // slice
+               35,       // taper
+               0.045,    // point chamfer
+               0.1,      // character depth along z-axis
+               0.00,     // increase per character
+               0)        // 1 = "merge"
+        finish { phong 1.0 
+                 diffuse 0.7
+                }  
+        pigment{color White}
+        rotate <90, 0, 0>
+        scale <0.5, 0.5, 0.5>
+        translate <-0.15, 2.01, -0.16>   
+}
+
 // Bottle
 superellipsoid { <0.25, 0.25>
         scale <0.45, 0.5, 0.45>

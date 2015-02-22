@@ -3,12 +3,14 @@ global_settings{ assumed_gamma 1.0 }
 #default{ finish{ ambient 0.1 diffuse 0.9 }} 
 //--------------------------------------------------------------------------
 #include "colors.inc"
-#include "textures.inc"
+#include "functions.inc"
 #include "glass.inc"          
-#include "woods.inc"
+#include "metals.inc"
 #include "shapes.inc"
 #include "shapes2.inc"
-#include "functions.inc"           
+#include "stones.inc"
+#include "textures.inc"
+           
                                 
 // 
 #declare My_seed = seed(now * 100000);    
@@ -39,16 +41,6 @@ sky_sphere { pigment { gradient <0,1,0>
                      } // end of pigment
            } //end of skysphere
 
-// ground -------------------------------------------------------------------
-plane{ <0,1,0>, 0 
-       texture{ T_Wood19
-                scale <0.3, 0.3, 0.3>
-                normal { bumps 0.75 scale 0.025}
-                finish { phong 0.1}
-              } // end of texture
-     } // end of plane
-
-
 #macro NailPolishBottle (nailColor)
 union {   
 // Cap
@@ -66,19 +58,19 @@ superellipsoid { <1.0, 0.1>
 object { 
 Bevelled_Text ("texgyreadventor-bold.ttf", // font file
                "d",  // text
-               10 ,      // slice
+               30 ,      // slice
                35,       // taper
                0.045,    // point chamfer
                0.1,      // character depth along z-axis
                0.00,     // increase per character
                0)        // 1 = "merge"
-        finish { phong 1.0 
+        finish { phong   1.0 
                  diffuse 0.7
                 }  
         pigment{color White}
         rotate <90, 0, 0>
         scale <0.5, 0.5, 0.5>
-        translate <-0.15, 2.01, -0.16>   
+        translate <-0.15, 2.03, -0.16>   
 }
 
 // Bottle
@@ -107,7 +99,7 @@ Bevelled_Text ("texgyreadventor-regular.ttf", // font file
                10 ,      // slice
                35,       // taper
                0.045,    // point chamfer
-               0.1,      // character depth along z-axis
+               0.2,      // character depth along z-axis
                0.00,     // increase per character
                0)        // 1 = "merge"
         material { M_Glass3 }
@@ -117,7 +109,7 @@ Bevelled_Text ("texgyreadventor-regular.ttf", // font file
                 }
         rotate <0, 0, 90>
         scale <0.27, 0.27, 0.27>
-        translate <0.25, 0.1, -0.38>   
+        translate <0.25, 0.1, -0.44>   
 }
 }
 #end
@@ -143,3 +135,33 @@ object { NailPolishBottle( RandomColor() )
          translate <2, 0, 0>
        }
 
+
+// Marble counter top
+superellipsoid { <0.05, 0.05>
+        scale <8.0, 0.5, 4.0>
+        texture { T_Stone24
+                  scale 4
+                  finish { reflection{.01,.1}
+                  }
+        }
+        rotate <0, -25, 0>        
+        translate <-1, -0.5, 2>
+}
+   
+// Rear wall         
+#declare rear_wall=plane {        
+        <0, 0, 1>, 1      
+        pigment {color <0.5, 0.5, 0.8> }             
+        rotate <0, -25, 0>        
+        translate <-1, 0, 5.5>
+};  
+rear_wall
+
+// Mirror        
+box { <-10, 0.0, -0.5>, <5.0, 5, -0.5>
+        rotate <0, -25, 0>        
+        texture {T_Silver_1C}
+        translate <-1, 0, 7>
+}
+        
+              

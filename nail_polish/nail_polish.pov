@@ -66,7 +66,7 @@ union {
 }
 #end
               
-#macro NailPolishBottle (nailColor, capAngleY)
+#macro DanieBottle (nailColor, capAngleY)
 union {   
     object {        
         NailPolishCap ()    
@@ -74,17 +74,32 @@ union {
         rotate <0, capAngleY, 0>
     }
 
-    // Bottle
-    superellipsoid { 
-        <0.25, 0.25>
-        scale <0.45, 0.5, 0.45>
-        material { M_Glass3 }
-        finish { 
-            phong 1.0 
-            diffuse 0.7
-            reflection 0.3
+    // Bottle   
+    difference {
+        // Main body
+        superellipsoid { 
+            <0.25, 0.25>
+            scale <0.45, 0.5, 0.45>
+            material { M_Glass3 }
+            finish { 
+                phong 1.0 
+                diffuse 0.7
+                reflection 0.3
+            }
+            translate <0,0.5,0>
         }
-        translate <0,0.5,0>
+        // Rectangular cutout
+        superellipsoid { 
+            <0.1, 0.1>
+            scale <0.2, 0.42, 0.05>
+            material { M_Glass3 }
+            finish { 
+                phong 1.0 
+                diffuse 0.7
+                reflection 0.3
+            }
+            translate <0.18, 0.5, -0.45>
+        }
     }
 
     // Nail polish  
@@ -103,7 +118,7 @@ union {
             10 ,      // slice
             35,       // taper
             0.045,    // point chamfer
-            0.2,      // character depth along z-axis
+            0.1,      // character depth along z-axis
             0.00,     // increase per character
             0)        // 1 = "merge"
         material { M_Glass3 }
@@ -114,7 +129,7 @@ union {
         }
         rotate <0, 0, 90>
         scale <0.27, 0.27, 0.27>
-        translate <0.25, 0.1, -0.44>   
+        translate <0.25, 0.1, -0.42>   
     }
 }
 #end
@@ -122,7 +137,7 @@ union {
 // And now the actual scene.   
 // This one bottle is on its side...  
 object { 
-    NailPolishBottle( 
+    DanieBottle( 
        RandomColor(), 
        360*rand(My_seed)) 
     rotate    <-90-20*rand(My_seed), 0, 90>
@@ -130,28 +145,28 @@ object {
 }
 // The next four are upright
 object { 
-    NailPolishBottle( 
+    DanieBottle( 
         RandomColor(), 
         360*rand(My_seed)) 
     rotate    <0, 20-40*rand(My_seed), 0>
     translate <-1, 0, 0>
 }
 object { 
-    NailPolishBottle( 
+    DanieBottle( 
         RandomColor(), 
         360*rand(My_seed))   
     rotate    <0, 20-40*rand(My_seed), 0>
     translate <0, 0, 0>
 }
 object { 
-    NailPolishBottle( 
+    DanieBottle( 
         RandomColor(), 
         360*rand(My_seed)) 
     rotate    <0, 20-40*rand(My_seed), 0>    
     translate <1, 0, 0>
 }
 object { 
-    NailPolishBottle( 
+    DanieBottle( 
         RandomColor(), 
         360*rand(My_seed))  
     rotate    <0, 20-40*rand(My_seed), 0>

@@ -142,7 +142,7 @@ union {
         <0, 0, 0>, 0.6    // Center and radius of one end
         <0, 1.0, 0>, 0.4    // Center and radius of other end
         0.05, // rounding radius,
-        0)
+        1)
     material { M_Glass3 }
     }  
         
@@ -152,20 +152,20 @@ union {
         <0, 0.1, 0>, 0.5    // Center and radius of one end
         <0, 0.95, 0>, 0.38    // Center and radius of other end
         0.05, // rounding radius,
-        0)
+        1)
     pigment {color nailColor}
     } 
     
     // Cap
     superellipsoid { 
-        <1.0, 0.1>   
+        <1.0, 0.05>   
         scale <0.3, 0.3, 0.7>
         pigment {color Black}
         finish { 
             phong 1.0 
             diffuse 0.7
         }
-        rotate <90,0,0>
+        rotate <90, 0, 0>
         translate <0, 1.5, 0>
     }
            
@@ -176,7 +176,21 @@ union {
             1.00, 0.45,
             0.001, 1.50)
 
-        pigment { BrightGold }
+        pigment { 
+            object { 
+                text { 
+                    ttf "aftasansthin-regular.ttf", 
+                    "KEFLON", 
+                    1, 0 
+                    scale <.08, 0.01, 1>
+                    translate <0, -0.003, 0>
+                }
+                pigment { BrightGold }
+                pigment { Black }
+            }
+            warp { cylindrical }
+            rotate y*110
+        }
         finish {
             ambient .1
             diffuse .1
@@ -190,6 +204,49 @@ union {
 }
 #end
 
+#macro MimaniBottle (nailColor)
+union {
+    // Glass body    
+    object{
+        Round_Cone(
+            <0, 0, 0>, 0.4
+            <0, 1.0, 0>, 0.5
+            0.15,
+            1)
+        material { M_Glass3 }
+        scale <1, 1, 0.6>         
+    }
+    // Polish
+    object{
+        Round_Cone(
+            <0, 0, 0>, 0.3
+            <0, 0.9, 0>, 0.4
+            0.15,
+            1)
+        pigment {color nailColor}
+        scale <1, 1, 0.6>         
+        translate <0, 0.1, 0>         
+    }
+    // Cap    
+    object{
+        Round_Cone(
+            <0, 0, 0>, 0.22
+            <0, 1.0, 0>, 0.17 
+            0.02, // rounding radius,
+            1)
+        pigment { BrightGold }
+        finish {
+            ambient .1
+            diffuse .1
+            specular 1
+            roughness .1
+            reflection { 0.75 }
+        }
+    scale <1, 1, 1>                          
+    translate <0, 1.0, 0>         
+    }
+}
+#end
      
 // And now the actual scene.   
 
@@ -207,7 +264,12 @@ object {
     rotate    <-90-20*rand(My_seed), 0, 90>
     translate <-2, 0.5, -0.5>
 }
-// The next four are upright
+object { 
+    MimaniBottle( 
+        RandomColor())  
+    translate <-0.6, 0, -1.5>
+    rotate    <0, 20-40*rand(My_seed), 0>
+}
 object { 
     DanieBottle( 
         RandomColor(), 
@@ -225,7 +287,7 @@ object {
 object { 
     KeflonBottle( 
         RandomColor()) 
-    translate <1, 0, 0>
+    translate <1, 0, -0.5>
 }
 object { 
     DanieBottle( 

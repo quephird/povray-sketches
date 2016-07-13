@@ -20,9 +20,9 @@ global_settings { assumed_gamma 1.0 }
 // Main camera 
 camera {
     perspective angle 75   
-    location  <2.0 , 5.0, -4.0>  
+    location  <0.0 , 7.0, -4.0>  
     right     x*image_width/image_height
-    look_at   <-0.5 , 1.0 , 0.0>
+    look_at   <0.0 , 1.0 , 0.0>
 }
 
 // Main light
@@ -90,12 +90,19 @@ union {
 // And now the actual scene.   
 
 object { 
-    Brick(RandomColor(), 5, 1)
-    translate <0, 0, 0>
+    Brick(RandomColor(), 2, 2)
+    rotate <0, 10, 0>
+    translate <0, 0, 2.5>
 }
 object { 
     Brick(RandomColor(), 1, 4)
-    translate <0, 0, 0>
+    rotate <0, 140, 0>
+    translate <-2, 0, 1>
+}
+object { 
+    Brick(RandomColor(), 2, 4)
+    rotate <0, 60, 0>
+    translate <3, 0, 1>
 }
 
 // Marble counter top
@@ -109,15 +116,15 @@ superellipsoid {
             reflection {.01, .1}
         }
     }
-    rotate <0, -25, 0>        
-    translate <-1, -0.5, 2>
+    rotate <0, 0, 0>        
+    translate <0, -0.5, 2>
 }
    
 // Rear wall         
 plane {        
     <0, 0, 1>, 1      
     pigment {color <0.5, 0.5, 0.8>}             
-    rotate <0, -25, 0>        
+    rotate <0, 0, 0>        
     translate <-1, 0, 5.5>
 }
 

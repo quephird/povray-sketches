@@ -3,12 +3,9 @@ global_settings { assumed_gamma 1.0 }
 
 #include "colors.inc"
 #include "functions.inc"
-#include "glass.inc"          
-#include "metals.inc"
 #include "shapes.inc"
 #include "shapes2.inc"
 #include "stones.inc"
-#include "textures.inc"
            
                                 
 // Random color generator with moving seed
@@ -43,7 +40,7 @@ union {
         rotate <90, 0, 0>
     }
         
-    // Brand initial on top of cap
+    // Brand initial on top of each stud
     object { 
         Bevelled_Text (
             "Politica_Bold_Italic.ttf", // font file
@@ -66,31 +63,38 @@ union {
 }
 #end
 
-#macro Brick (brickColor, studWidth, studLength)
+#macro Piece (pieceColor, pieceHeight, studWidth, studLength)
 union {
     superellipsoid { 
         <0.05, 0.05>
-        scale <0.5*studWidth, 0.6, 0.5*studLength>
+        scale <0.5*studWidth, pieceHeight, 0.5*studLength>
         pigment {color brickColor}
-    translate <0.0, 0.6, 0.0>
+    translate <0.0, pieceHeight, 0.0>
     }
     #for (i, 0, studWidth-1)
         #for (j, 0, studLength-1)
             object { 
                 Stud (brickColor) 
                 translate <i-(studWidth-1)*0.5, 
-                           1.3, 
+                           2*pieceHeight+0.1, 
                            j-(studLength-1)*0.5>
             }
         #end
     #end
 }         
 #end
+
+#macro Brick(brickColor, studWidth, studLength)
+    Piece(brickColor, 0.6, studWidth, studLength)
+#end
+
+#macro Plate(brickColor, studWidth, studLength)
+    Piece(brickColor, 0.2, studWidth, studLength)
+#end
      
 // And now the actual scene.   
-
 object { 
-    Brick(RandomColor(), 2, 2)
+    Plate(RandomColor(), 2, 2)
     rotate <0, 10, 0>
     translate <0, 0, 2.5>
 }
@@ -100,12 +104,12 @@ object {
     translate <-2, 0, 1>
 }
 object { 
-    Brick(RandomColor(), 2, 4)
+    Plate(RandomColor(), 2, 4)
     rotate <0, 60, 0>
     translate <3, 0, 1>
 }
 
-// Marble counter top
+// Table top
 superellipsoid { 
     <0.05, 0.05>
     scale <8.0, 0.5, 4.0>

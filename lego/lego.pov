@@ -17,7 +17,7 @@ global_settings { assumed_gamma 1.0 }
 // Main camera 
 camera {
     perspective angle 75   
-    location  <0.0 , 7.0, -4.0>  
+    location  <0.0 , 4.0, -4.0>  
     right     x*image_width/image_height
     look_at   <0.0 , 1.0 , 0.0>
 }
@@ -65,12 +65,29 @@ union {
 
 #macro Piece (pieceColor, pieceHeight, studWidth, studLength)
 union {
-    superellipsoid { 
-        <0.05, 0.05>
-        scale <0.5*studWidth, pieceHeight, 0.5*studLength>
-        pigment {color brickColor}
-    translate <0.0, pieceHeight, 0.0>
+	  difference {
+		    superellipsoid { 
+		        <0.05, 0.05>
+		        scale <0.5*studWidth, pieceHeight, 0.5*studLength>
+            translate <0.0, pieceHeight, 0.0>
+		    }
+		    superellipsoid { 
+            <0.05, 0.05>
+            scale <0.5*studWidth-0.15, 
+                   0.9*pieceHeight, 
+                   0.5*studLength-0.15>
+            translate <0.0, pieceHeight-0.1, 0.0>
+		    }
+        pigment {
+        	  color brickColor
+        }
+        finish {
+        	  ambient 0.1
+            diffuse 0.9
+            phong 1
+        }
     }
+
     #for (i, 0, studWidth-1)
         #for (j, 0, studLength-1)
             object { 
@@ -94,9 +111,9 @@ union {
      
 // And now the actual scene.   
 object { 
-    Plate(RandomColor(), 2, 2)
-    rotate <0, 10, 0>
-    translate <0, 0, 2.5>
+    Brick(RandomColor(), 2, 2)
+    rotate <270, 10, 0>
+    translate <0, 1.0, 2.5>
 }
 object { 
     Brick(RandomColor(), 1, 4)

@@ -69,6 +69,31 @@ union {
 }
 #end
 
+#macro Tube (pieceColor, pieceHeight)
+difference {
+		superellipsoid {
+		    <1.0, 0.1>
+		    scale <0.4, 0.4, 0.5*pieceHeight>
+		    rotate <90, 0, 0>
+        translate <0,0,0>   
+		}
+		superellipsoid {
+		    <1.0, 0.1>
+		    scale <0.33, 0.33, pieceHeight>
+		    rotate <90, 0, 0>
+        translate <0,0,0>   
+		}
+    pigment {
+    	  color brickColor
+    }
+    finish {
+    	  ambient 0.1
+        diffuse 0.9
+        phong 1
+    }
+}
+#end
+
 #macro Piece (pieceColor, pieceHeight, studWidth, studLength)
 difference {
 		union {
@@ -87,6 +112,7 @@ difference {
 		                   0.5*studLength-0.15>
 		            translate <0.0, pieceHeight-0.1, 0.0>
 				    }
+
 		        pigment {
 		        	  color brickColor
 		        }
@@ -108,9 +134,21 @@ difference {
 		            }
 		        #end
 		    #end
+		    
+		    #for (i, 0, studWidth-2)
+		        #for (j, 0, studLength-2)
+		            object { 
+		                Tube (brickColor, pieceHeight) 
+		                translate <i-(studWidth-2)*0.5, 
+		                           pieceHeight, 
+		                           j-(studLength-2)*0.5>
+						    }
+		        #end
+		    #end
+
 		}
 		
-		// Subtraction of dimples inside piece
+		// Subtraction of dimples inside piece under each stud
     #for (i, 0, studWidth-1)
         #for (j, 0, studLength-1)
 				    superellipsoid {
@@ -123,6 +161,7 @@ difference {
 				    }
         #end
     #end
+
 }       
 #end
 
@@ -147,8 +186,8 @@ object {
 }
 object { 
     Plate(RandomColor(), 2, 4)
-    rotate <0, 60, 0>
-    translate <3, 0, 1>
+    rotate <180, 60, 0>
+    translate <3, 0.5, 1>
 }
 
 // Table top

@@ -48,7 +48,6 @@ union {
             diffuse 0.7
         }
         rotate <90, 0, 0>
-//        translate <0, 1.5, 0>
     }
            
     // Brand ring around cap
@@ -81,8 +80,26 @@ union {
             reflection { 0.75 }
         }
         scale <1,10,1>
-//        translate <0, 1.1, 0>
         translate <0, -0.4, 0>
     }
+}
+#end
+
+#macro MimaniCap ()
+object{
+    Round_Cone(
+        <0, 0, 0>, 0.22
+        <0, 1.0, 0>, 0.17 
+        0.02, // rounding radius,
+        1)
+    pigment { BrightGold }
+    finish {
+        ambient .1
+        diffuse .1
+        specular 1
+        roughness .1
+        reflection { 0.75 }
+    }
+    scale <1, 1, 1>                          
 }
 #end

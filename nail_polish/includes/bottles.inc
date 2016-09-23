@@ -2,13 +2,6 @@
 
 #macro DanieBottle (nailColor, capAngleY)
 union {
-	  // Cap
-    object {
-        DanieCap ()
-        translate <0, 1.5, 0>
-        rotate <0, capAngleY, 0>
-    }
-
     // Bottle   
     difference {
         // Main body
@@ -23,7 +16,7 @@ union {
             }
             translate <0,0.5,0>
         }
-        // Rectangular cutout
+        // Rectangular cutout on side
         superellipsoid { 
             <0.1, 0.1>
             scale <0.2, 0.42, 0.05>
@@ -34,6 +27,28 @@ union {
                 reflection 0.3
             }
             translate <0.18, 0.5, -0.45>
+        }
+    }
+    
+    // Neck
+    difference {
+        superellipsoid { 
+            <1.0, 0.1>   
+		        scale <0.2, 0.2, 0.3>
+		        rotate <90,0,0>
+		        translate <0, 1.2, 0>
+		    }
+        superellipsoid { 
+            <1.0, 0.1>   
+		        scale <0.15, 0.15, 0.3>
+		        rotate <90,0,0>
+		        translate <0, 1.2, 0>
+		    }
+        material { M_Glass3 }
+        finish { 
+            phong 1.0 
+            diffuse 0.7
+            reflection 0.3
         }
     }
 
@@ -65,6 +80,21 @@ union {
         rotate <0, 0, 90>
         scale <0.27, 0.27, 0.27>
         translate <0.25, 0.1, -0.42>   
+    }
+}
+#end
+
+#macro DanieBottleCapOn (nailColor, capAngleY)
+union{
+	  // Cap
+    object {
+        DanieCap ()
+        translate <0, 1.5, 0>
+        rotate <0, capAngleY, 0>
+    }
+	  // Cap
+    object {
+        DanieBottle (nailColor, capAngleY)
     }
 }
 #end

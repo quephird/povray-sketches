@@ -21,7 +21,7 @@ global_settings { assumed_gamma 1.0 }
 // Main camera 
 camera {
     perspective angle 75   
-    location  <2.0 , 3.0, -4.0>  
+    location  <2.0 , 3.0, -5.0>  
     right     x*image_width/image_height
     look_at   <-0.5 , 1.0 , 0.0>
 }
@@ -31,20 +31,12 @@ light_source{
 	  < 10,10,-10>
 	  color White
 }
-     
+
 // And now the actual scene.   
 object { 
     KeflonBottle( 
         RandomColor()) 
     translate <-3.5, 0, -1.0>
-}
-// This one bottle is on its side...  
-object { 
-    DanieBottle( 
-       RandomColor(), 
-       360*rand(My_seed)) 
-    rotate    <-90-20*rand(My_seed), 0, 90>
-    translate <-2, 0.5, -0.5>
 }
 object { 
     MimaniBottle( 
@@ -53,14 +45,14 @@ object {
     rotate    <0, 20-40*rand(My_seed), 0>
 }
 object { 
-    DanieBottle( 
+    DanieBottleCapOn( 
         RandomColor(), 
         360*rand(My_seed)) 
     rotate    <0, 20-40*rand(My_seed), 0>
     translate <-1, 0, 0>
 }
 object { 
-    DanieBottle( 
+    DanieBottleCapOn( 
         RandomColor(), 
         360*rand(My_seed))   
     rotate    <0, 20-40*rand(My_seed), 0>
@@ -77,6 +69,26 @@ object {
         360*rand(My_seed))  
     rotate    <0, 20-40*rand(My_seed), 0>
     translate <2, 0, 0>
+}
+
+// This one bottle is on its side...
+
+#declare bottleOnSideColor = RandomColor();
+object { 
+    DanieBottle( 
+       bottleOnSideColor, 
+       360*rand(My_seed)) 
+    rotate    <-90-20*rand(My_seed), 0, 90>
+    translate <-2, 0.5, -0.5>
+}
+superellipsoid { 
+    <1.0, 0.9>   
+    scale <0.4, 0.4, 0.05>
+    pigment {
+    	  color bottleOnSideColor
+    }
+    rotate <90, 0, 0>
+    translate <-1.75, 0, -1.75>
 }
 
 // Marble counter top

@@ -9,7 +9,8 @@ global_settings { assumed_gamma 1.0 }
 #include "shapes2.inc"
 #include "stones.inc"
 #include "textures.inc"
-           
+
+#include "includes/caps.inc"
                                 
 // Random color generator with moving seed
 #declare My_seed = seed(now * 100000);    
@@ -28,48 +29,11 @@ camera {
 // Main light
 light_source{< 10,10,-10> color White}
               
-#macro DanieCap ()              
-union {
-    // Main body
-    superellipsoid { 
-        <1.0, 0.1>   
-        scale <0.3, 0.3, 0.5>
-        pigment {color White}
-        finish { 
-            phong 1.0 
-            diffuse 0.7
-        }
-        rotate <90,0,0>
-        translate <0,0,0>
-    }
-        
-    // Brand initial on top of cap
-    object { 
-        Bevelled_Text (
-            "texgyreadventor-bold.ttf", // font file
-            "d",      // text
-            30 ,      // slice
-            35,       // taper
-            0.045,    // point chamfer
-            0.1,      // character depth along z-axis
-            0.00,     // increase per character
-            0)        // 1 = "merge"
-        finish { 
-            phong   1.0 
-            diffuse 0.7
-        }  
-        pigment {color White}
-        rotate <90, 0, 0>
-        scale <0.5, 0.5, 0.5>
-        translate <-0.15, 0.53, -0.16>   
-    }
-}
-#end
               
 #macro DanieBottle (nailColor, capAngleY)
 union {   
-    object {        
-        DanieCap ()    
+    object {
+        DanieCap ()
         translate <0, 1.5, 0>
         rotate <0, capAngleY, 0>
     }
@@ -136,6 +100,11 @@ union {
 
 #macro KeflonBottle (nailColor)
 union {
+    object {
+        KeflonCap ()
+        translate <0, 1.5, 0>
+    }
+
     // Main body   
     object {           
     Round_Cone(
@@ -155,53 +124,7 @@ union {
         1)
     pigment {color nailColor}
     } 
-    
-    // Cap
-    superellipsoid { 
-        <1.0, 0.05>   
-        scale <0.3, 0.3, 0.7>
-        pigment {color Black}
-        finish { 
-            phong 1.0 
-            diffuse 0.7
-        }
-        rotate <90, 0, 0>
-        translate <0, 1.5, 0>
-    }
-           
-    // Brand ring around cap
-    object{ 
-        Supertorus(
-            0.30, 0.01,
-            1.00, 0.45,
-            0.001, 1.50)
-
-        pigment { 
-            object { 
-                text { 
-                    ttf "aftasansthin-regular.ttf", 
-                    "KEFLON", 
-                    1, 0 
-                    scale <.08, 0.01, 1>
-                    translate <0, -0.003, 0>
-                }
-                pigment { BrightGold }
-                pigment { Black }
-            }
-            warp { cylindrical }
-            rotate y*110
-        }
-        finish {
-            ambient .1
-            diffuse .1
-            specular 1
-            roughness .001
-            reflection { 0.75 }
-        }
-        scale <1,10,1>
-        translate <0, 1.1, 0>
-    }
-}
+ls }
 #end
 
 #macro MimaniBottle (nailColor)

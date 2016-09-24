@@ -36,12 +36,12 @@ light_source{
 object { 
     KeflonBottle( 
         RandomColor()) 
-    translate <-3.5, 0, -1.0>
+    translate <-3.5, 0, 0.0>
 }
 object { 
     MimaniBottle( 
         RandomColor())  
-    translate <-0.6, 0, -1.5>
+    translate <-0.6, 0, -0.5>
     rotate    <0, 20-40*rand(My_seed), 0>
 }
 object { 
@@ -49,26 +49,26 @@ object {
         RandomColor(), 
         360*rand(My_seed)) 
     rotate    <0, 20-40*rand(My_seed), 0>
-    translate <-1, 0, 0>
+    translate <-1, 0, 1.0>
 }
 object { 
     DanieBottleCapOn( 
         RandomColor(), 
         360*rand(My_seed))   
     rotate    <0, 20-40*rand(My_seed), 0>
-    translate <0, 0, 0>
+    translate <0, 0, 1.0>
 }
 object { 
     KeflonBottle( 
         RandomColor()) 
-    translate <1, 0, -0.5>
+    translate <1, 0, 0.5>
 }
 object { 
     DanieBottle( 
         RandomColor(), 
         360*rand(My_seed))  
     rotate    <0, 20-40*rand(My_seed), 0>
-    translate <2, 0, 0>
+    translate <2, 0, 1.0>
 }
 
 // This one bottle is on its side...
@@ -79,7 +79,7 @@ object {
        bottleOnSideColor, 
        360*rand(My_seed)) 
     rotate    <-90-20*rand(My_seed), 0, 90>
-    translate <-2, 0.5, -0.5>
+    translate <-2, 0.5, 0.5>
 }
 superellipsoid { 
     <1.0, 0.9>   
@@ -88,7 +88,7 @@ superellipsoid {
     	  color bottleOnSideColor
     }
     rotate <90, 0, 0>
-    translate <-1.75, 0, -1.75>
+    translate <-1.75, 0, -0.75>
 }
 
 // Marble counter top

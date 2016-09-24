@@ -35,15 +35,13 @@ union {
         superellipsoid { 
             <1.0, 0.1>   
 		        scale <0.2, 0.2, 0.3>
-		        rotate <90,0,0>
-		        translate <0, 1.2, 0>
 		    }
         superellipsoid { 
             <1.0, 0.1>   
 		        scale <0.15, 0.15, 0.3>
-		        rotate <90,0,0>
-		        translate <0, 1.2, 0>
 		    }
+        rotate <90,0,0>
+        translate <0, 1.2, 0>
         material { M_Glass3 }
         finish { 
             phong 1.0 
@@ -51,6 +49,41 @@ union {
             reflection 0.3
         }
     }
+
+    // Ring around neck
+    object{ 
+        Supertorus(
+            0.22, 0.02,
+            1.00, 0.45,
+            0.001, 1.50)
+
+        material { M_Glass3 }
+        finish { 
+            phong 1.0 
+            diffuse 0.7
+            reflection 0.3
+        }
+        translate <0, 1.1, 0>
+    }
+
+    // Threading
+    #for (i, 0, 0.1, 0.1)
+		    object{ 
+		        Supertorus(
+		            0.21, 0.02,
+		            1.00, 0.45,
+		            0.001, 1.50)
+		
+		        material { M_Glass3 }
+		        finish { 
+		            phong 1.0 
+		            diffuse 0.7
+		            reflection 0.3
+		        }
+		        rotate <10, 0, 0>
+		        translate <0, 1.3+i, 0>
+		    }
+    #end
 
     // Nail polish  
     superellipsoid { 

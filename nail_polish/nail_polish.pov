@@ -32,7 +32,7 @@ light_source{
 	  color White
 }
 
-// And now the actual scene.   
+// And now the actual scene.
 object { 
     KeflonBottle( 
         RandomColor()) 
@@ -72,7 +72,6 @@ object {
 }
 
 // This one bottle is on its side...
-
 #declare bottleOnSideColor = RandomColor();
 object { 
     DanieBottle( 
@@ -81,6 +80,7 @@ object {
     rotate    <-90-20*rand(My_seed), 0, 90>
     translate <-2, 0.5, 0.5>
 }
+// Polish spill with same color
 superellipsoid { 
     <1.0, 0.9>   
     scale <0.4, 0.4, 0.05>
@@ -89,6 +89,13 @@ superellipsoid {
     }
     rotate <90, 0, 0>
     translate <-1.75, 0, -0.75>
+}
+
+// ... and this one cap is on its side too
+object { 
+    DanieCap()
+    rotate    <-20, 0, 90>
+    translate <-3, 0.3, -1.5>
 }
 
 // Marble counter top

@@ -1,18 +1,50 @@
 #macro DanieCap ()              
 union {
     // Main body
-    superellipsoid { 
-        <1.0, 0.1>   
-        scale <0.3, 0.3, 0.5>
+    difference {
+		    superellipsoid { 
+		        <1.0, 0.1>   
+		        scale <0.3, 0.3, 0.5>
+		    }
+		    superellipsoid { 
+		        <1.0, 0.1>   
+		        scale <0.25, 0.25, 0.45>
+		        translate <0.0, 0.0, 0.1>
+		    }
+        rotate <90,0,0>
         pigment {color White}
         finish { 
             phong 1.0 
             diffuse 0.7
         }
-        rotate <90,0,0>
-        translate <0,0,0>
     }
-        
+
+    // Brush stem
+    superellipsoid { 
+        <1.0, 0.1>   
+        scale <0.05, 0.05, 0.9>
+        translate <0.0, 0.0, 0.4>
+        rotate <90,0,0>
+        material { M_Glass3 }
+        finish { 
+            phong 1.0 
+            diffuse 0.7
+            reflection 0.3
+        }
+    }
+
+    // Brush
+    #declare new_seed = seed(now * 100000);
+    #for (i, 0, 6.28, 0.375)
+        #declare dr = 0.04*rand(new_seed);
+        cylinder {
+            <0.025*sin(i), -1.3, 0.025*cos(i)>, 
+            <(0.025+dr)*sin(i), -1.7, (0.025+dr)*cos(i)>, 
+            0.007
+            pigment {color Black}
+        }
+    #end
+
     // Brand initial on top of cap
     object { 
         Bevelled_Text (

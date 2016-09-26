@@ -20,7 +20,7 @@ global_settings { assumed_gamma 1.0 }
 
 // Main camera 
 camera {
-    perspective angle 75   
+    perspective angle 75
     location  <2.0 , 3.0, -5.0>  
     right     x*image_width/image_height
     look_at   <-0.5 , 1.0 , 0.0>
@@ -71,7 +71,7 @@ object {
     translate <2, 0, 1.0>
 }
 
-// This one bottle is on its side...
+// This one bottle is on its side
 #declare bottleOnSideColor = RandomColor();
 object { 
     DanieBottle( 
@@ -80,22 +80,34 @@ object {
     rotate    <-90-20*rand(My_seed), 0, 90>
     translate <-2, 0.5, 0.5>
 }
-// Polish spill with same color
-superellipsoid { 
-    <1.0, 0.9>   
+
+// Polish spill from bottle
+superellipsoid {
+    <1.0, 0.9>
     scale <0.4, 0.4, 0.05>
     pigment {
-    	  color bottleOnSideColor
+        color bottleOnSideColor
     }
     rotate <90, 0, 0>
     translate <-1.75, 0, -0.75>
 }
 
-// ... and this one cap is on its side too
+// This one cap is on its side too
 object { 
-    DanieCap()
-    rotate    <-20, 0, 90>
+    DanieCap(bottleOnSideColor)
+    rotate    <20, 0, 90>
     translate <-3, 0.3, -1.5>
+}
+
+// Polish spill from end of brush
+superellipsoid { 
+    <1.0, 0.9>   
+    scale <0.2, 0.2, 0.05>
+    pigment {
+    	  color bottleOnSideColor
+    }
+    rotate <90, 0, 0>
+    translate <-1.5, 0, -2.0>
 }
 
 // Marble counter top

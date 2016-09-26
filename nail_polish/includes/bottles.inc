@@ -121,7 +121,7 @@ union {
 union{
 	  // Cap
     object {
-        DanieCap ()
+        DanieCap (nailColor)
         translate <0, 1.5, 0>
         rotate <0, capAngleY, 0>
     }
@@ -140,7 +140,7 @@ union {
         translate <0, 1.5, 0>
     }
 
-    // Main body   
+    // Main body
     object {           
     Round_Cone(
         <0, 0, 0>, 0.6    // Center and radius of one end

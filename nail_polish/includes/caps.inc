@@ -1,4 +1,4 @@
-#macro DanieCap ()              
+#macro DanieCap (polishColor)              
 union {
     // Main body
     difference {
@@ -44,6 +44,26 @@ union {
             pigment {color Black}
         }
     #end
+
+    // Polish with same color at end of brush
+    blob {
+      	threshold 0.1
+    		sphere {
+		        <0.0, -1.4, 0.0>, 0.03, 1
+    		}
+        cylinder {
+            <0, -1.4, 0>, 
+            <0, -1.7, 0>,
+            0.05,
+            1
+        }  
+    		sphere {
+		        <0.0, -1.7, 0.0>, 0.05, 1
+    		}
+        pigment {
+        	  color polishColor
+        }
+		}
 
     // Brand initial on top of cap
     object { 

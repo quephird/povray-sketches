@@ -23,10 +23,8 @@ global_settings { assumed_gamma 1.0 }
 camera {
     perspective angle 75
     right     x*image_width/image_height
-//    location  <2.0 , 3.0, -5.0>  
-//    look_at   <-0.5 , 1.0 , 0.0>
-    location  <-1.5 , 1.0, -3.0>  
-    look_at   <-2.5 , 0.0 , 0.0>
+    location  <2.0 , 3.0, -5.0>  
+    look_at   <-0.5 , 1.0 , 0.0>
 }
 
 // Main light
@@ -36,56 +34,77 @@ light_source{
 }
 
 // And now the actual scene.
-//object {
-//    KeflonBottle( 
-//        RandomColor()) 
-//    translate <-3.5, 0, 0.0>
-//}
-//object { 
-//    MimaniBottle( 
-//        RandomColor())  
-//    translate <-0.6, 0, -0.5>
-//    rotate    <0, 20-40*rand(My_seed), 0>
-//}
-//object { 
-//    DanieBottleCapOn( 
-//        RandomColor(), 
-//        360*rand(My_seed)) 
-//    rotate    <0, 20-40*rand(My_seed), 0>
-//    translate <-1, 0, 1.0>
-//}
-//object { 
-//    DanieBottleCapOn( 
-//        RandomColor(), 
-//        360*rand(My_seed))   
-//    rotate    <0, 20-40*rand(My_seed), 0>
-//    translate <0, 0, 1.0>
-//}
-//object { 
-//    KeflonBottle( 
-//        RandomColor()) 
-//    translate <1, 0, 0.5>
-//}
-//object { 
-//    DanieBottle( 
-//        RandomColor(), 
-//        360*rand(My_seed))  
-//    rotate    <0, 20-40*rand(My_seed), 0>
-//    translate <2, 0, 1.0>
-//}
+object {
+    KeflonBottle( 
+        RandomColor()) 
+    translate <-3.5, 0, 0.0>
+}
+object { 
+    MimaniBottle( 
+        RandomColor())  
+    translate <-0.6, 0, -0.5>
+    rotate    <0, 20-40*rand(My_seed), 0>
+}
+object { 
+    DanieBottleCapOn( 
+        RandomColor(), 
+        360*rand(My_seed)) 
+    rotate    <0, 20-40*rand(My_seed), 0>
+    translate <-1, 0, 1.0>
+}
+object { 
+    DanieBottleCapOn( 
+        RandomColor(), 
+        360*rand(My_seed))   
+    rotate    <0, 20-40*rand(My_seed), 0>
+    translate <0, 0, 1.0>
+}
+object { 
+    KeflonBottle( 
+        RandomColor()) 
+    translate <1, 0, 0.5>
+}
+object { 
+    DanieBottle( 
+        RandomColor(), 
+        360*rand(My_seed))  
+    rotate    <0, 20-40*rand(My_seed), 0>
+    translate <2, 0, 1.0>
+}
 
-#macro StreamFromBottle (polishColor, streamHeight, spillRadius)
+#macro StreamFromBottle (polishColor, streamHeight)
 union {
+	  // Polish still in neck
+	  difference {
+	  	  cylinder {
+	  	  	  <0.0, 0.0, 0.6>,
+	  	  	  <0.0, 0.0, 0.0>,
+	  	  	  0.15
+	  	  }
+	  	  box {
+	  	  	  <-0.15, -0.1, -0.1>,
+	  	  	  <0.15, 0.3, 0.7>
+	  	  }
+	  	  rotate <0.0, -10.0, 0.0>
+  	  	translate <0.0, 1.2*streamHeight, 0.0>
+	  }
+	
+	  // Polish streaming out of bottle
 		isosurface {
 		    function { 0.01*(pow(y,6) - pow(y,4) + 4*pow(z,2) + 4*pow(x,2)-0.02) }
-        translate <0, 1.8*streamHeight, 0>
-		    scale <0.5*streamHeight, 0.5*streamHeight, 0.5*streamHeight>
+        translate <0, 1.8*streamHeight, 0.2>
+		    scale <0.5*streamHeight, 0.55*streamHeight, 0.5*streamHeight>
 		}
-		superellipsoid {
-		    <1.0, 0.9>
-		    scale <spillRadius, spillRadius, 0.05>
-		    rotate <90, 0, 0>
-		}
+
+    // Puddles of polish
+    #for (i, 0, 1, 1)
+        superellipsoid {
+            <1.0, 0.9>
+            scale <0.4+0.2*rand(My_seed), 0.4+0.2*rand(My_seed), 0.05>
+            rotate <90, 0, 0>
+            translate <-0.1+0.2*rand(My_seed), 0.0, -0.1+0.2*rand(My_seed)>
+        }
+    #end
     pigment {
         color polishColor
     }
@@ -104,38 +123,27 @@ object {
 object {
     StreamFromBottle(
         bottleOnSideColor,
-        0.45
-        0.4)
+        0.45)
     translate <-1.75, 0, -1.0>
 }
-// Polish spill from bottle
-//superellipsoid {
-//    <1.0, 0.9>
-//    scale <0.4, 0.4, 0.05>
-//    pigment {
-//        color bottleOnSideColor
-//    }
-//    rotate <90, 0, 0>
-//    translate <-1.75, 0, -0.75>
-//}
 
 // This one cap is on its side too
-//object { 
-//    DanieCap(bottleOnSideColor)
-//    rotate    <20, 0, 90>
-//    translate <-3, 0.3, -1.5>
-//}
-//
-//// Polish spill from end of brush
-//superellipsoid { 
-//    <1.0, 0.9>   
-//    scale <0.2, 0.2, 0.05>
-//    pigment {
-//    	  color bottleOnSideColor
-//    }
-//    rotate <90, 0, 0>
-//    translate <-1.5, 0, -2.0>
-//}
+object {
+    DanieCap(bottleOnSideColor)
+    rotate    <20, 0, 90>
+    translate <-3, 0.3, -1.5>
+}
+
+// Polish spill from end of brush
+superellipsoid {
+    <1.0, 0.9>
+    scale <0.2, 0.2, 0.05>
+    pigment {
+        color bottleOnSideColor
+    }
+    rotate <90, 0, 0>
+    translate <-1.5, 0, -2.0>
+}
 
 
 // Marble counter top

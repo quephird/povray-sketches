@@ -20,7 +20,7 @@ global_settings {
 // Main camera 
 camera {
     perspective angle 75   
-    location  <0.0, 8.0, -10.0>  
+    location  <0.0, 8.0, -12.0>  
     right     x*image_width/image_height
     look_at   <0.0, 1.0, 0.0>
 }
@@ -44,6 +44,8 @@ light_source {
 //    }
 //    interior { ior 1.5 }
 //}
+// r = a(1 - cos(phi))
+
 
 // Red apple
 // Maybe use difference with sphere and upside down cone
@@ -59,7 +61,7 @@ sphere {
     interior { ior 1.5 }
 }
 
-//// Pear
+// Pear
 sphere_sweep {
     linear_spline
     3, 
@@ -75,7 +77,7 @@ sphere_sweep {
     interior { ior 1.5 }
     translate<0, 0, 0>
     rotate <0, 0, -10>
-   }
+}
 
 // Orange
 sphere {
@@ -88,6 +90,33 @@ sphere {
     	  reflection 0.2 
     }
     interior{ ior 1.5 }
+}
+
+//Banana
+sphere_sweep {
+    b_spline
+    12, 
+    <-4, 1.0, -3.0>, 0.3
+    <-3, 1.0, -2.0>, 0.3
+    <-2, 1.0, -1.0>, 1.0
+    <-1, 1.0, 0.0>, 1.0
+    <0.0, 1.0, 0.5>, 1.0
+    <1.0, 1.0, 0.5>, 1.0
+    <2.0, 1.0, 0.0>, 1.0
+    <2.5, 1.0, -1.0>, 0.8
+    <3.0, 1.0, -1.2>, 0.4
+    <3.5, 1.0, -1.5>, 0.3
+    <3.8, 1.0, -1.7>, 0.3
+    <4.0, 1.0, -2.0>, 0.3
+    pigment { rgbf <0.9, 0.9, 0.0, 0.95> }
+    finish {
+    	  phong 0.9 
+    	  phong_size 40 
+    	  reflection 0.2 
+    }
+    interior { ior 1.5 }
+    translate<0, 0, -3>
+    rotate <0, 0, -10>
 }
 
 // Table top

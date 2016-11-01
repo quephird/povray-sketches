@@ -20,7 +20,7 @@ global_settings {
 // Main camera 
 camera {
     perspective angle 75   
-    location  <0.0, 8.0, -12.0>  
+    location  <0.0, 8.0, -13.0>  
     right     x*image_width/image_height
     look_at   <0.0, 1.0, 0.0>
 }
@@ -61,21 +61,49 @@ sphere {
     interior { ior 1.5 }
 }
 
-// Pear
+// Stem
+#macro Stem()
 sphere_sweep {
-    linear_spline
-    3, 
-    <0, 2.00, 0>, 2.0
-    <0, 3.0, 0>, 1.5
-    <0, 5, 0>, 0.75
-    pigment { rgbf <0.7, 0.9, 0.5, 0.95> }
+    cubic_spline
+    5,
+    <0, 0.1, 0>, 0.1
+    <0, 0.1, 0>, 0.1
+    <0, 0.6, 0>, 0.1
+    <-0.2, 0.9, 0>, 0.1
+    <-0.2, 0.9, 0>, 0.1
+    pigment { rgbf <0.7, 0.4, 0.2, 0.95> }
     finish {
     	  phong 0.9 
     	  phong_size 40 
     	  reflection 0.2 
     }
     interior { ior 1.5 }
-    translate<0, 0, 0>
+}
+#end
+
+// Pear
+union {
+		sphere_sweep {
+		    linear_spline
+		    5, 
+		    <0, 2.00, 0>, 2.0
+		    <0, 2.00, 0>, 2.0
+		    <0, 3.0, 0>, 1.4
+		    <0, 5, 0>, 0.75
+		    <0, 5, 0>, 0.75
+		    pigment { rgbf <0.7, 0.9, 0.5, 0.95> }
+        finish {
+            phong 0.9 
+            phong_size 40 
+        	  reflection 0.2 
+		    }
+		    interior { ior 1.5 }
+		    translate<0, 0, 0>
+		}
+		object {
+        Stem()
+        translate<0, 5.6, 0>
+		}
     rotate <0, 0, -10>
 }
 
@@ -85,9 +113,9 @@ sphere {
     material { M_Glass3 }
     pigment { rgbf <0.8, 0.5, 0.2, 0.95> }
     finish {
-    	  phong 0.9 
-    	  phong_size 40 
-    	  reflection 0.2 
+    	  phong 0.9
+    	  phong_size 40
+        reflection 0.2
     }
     interior{ ior 1.5 }
 }
@@ -110,9 +138,9 @@ sphere_sweep {
     <4.0, 1.0, -2.0>, 0.3
     pigment { rgbf <0.9, 0.9, 0.0, 0.95> }
     finish {
-    	  phong 0.9 
-    	  phong_size 40 
-    	  reflection 0.2 
+        phong 0.9
+        phong_size 40
+        reflection 0.2
     }
     interior { ior 1.5 }
     translate<0, 0, -3>
@@ -125,7 +153,7 @@ superellipsoid {
     scale <20.0, 0.5, 10.0>
     pigment { color LightGrey }
     finish { 
-        phong 0.5 
+        phong 0.5
         diffuse 0.1
         reflection 0.5
     }

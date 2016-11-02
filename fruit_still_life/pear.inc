@@ -18,7 +18,7 @@ union {
 		    translate<0, 0, 0>
 		}
 		object {
-        Stem()
+        Stem(1.0)
         translate<0, 5.6, 0>
 		}
     rotate <0, 0, -10>

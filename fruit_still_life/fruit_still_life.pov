@@ -9,7 +9,8 @@ global_settings {
 #include "shapes2.inc"
 #include "stones.inc"
 #include "textures.inc"
-           
+
+#include "apple.inc"
                                 
 // Random color generator with moving seed
 #declare My_seed = seed(now * 100000);    
@@ -30,35 +31,10 @@ light_source {
 	  <10, 10, -10> 
 	  color White
 }
-   
-//isosurface {
-//		function { pow(1-pow(x*x + z*z, 0.5),2.0) + 0.5*y*y - 2}
-//    contained_by { box { <-2.4, -2.1, -2.4>, <2.4, 2.1, 2.4> } }
-////    contained_by { sphere { <0,2.5,0>, 2.5 } }
-////    translate <0, 1, 0>
-//    pigment { rgbf <0.9, 0.3, 0.3, 0.95> }
-//    finish {
-//    	  phong 0.9 
-//    	  phong_size 40 
-//    	  reflection 0.2 
-//    }
-//    interior { ior 1.5 }
-//}
-// r = a(1 - cos(phi))
 
-
-// Red apple
-// Maybe use difference with sphere and upside down cone
-sphere {
-    <-4, 2, -1>, 2
-    material { M_Glass3 }
-    pigment { rgbf <0.9, 0.3, 0.3, 0.95> }
-    finish {
-    	  phong 0.9 
-    	  phong_size 40 
-    	  reflection 0.2 
-    }
-    interior { ior 1.5 }
+object {
+    Apple(1.5)
+    translate <-4, 3, 0>
 }
 
 // Stem

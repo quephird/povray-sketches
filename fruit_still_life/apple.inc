@@ -1,0 +1,43 @@
+#include "textures.inc"
+
+#declare Fr = function { 1.0 - cos(u) };
+#declare Fx = function { Fr(u,v,0)*sin(u)*cos(v) };
+#declare Fy = function { Fr(u,v,0)*cos(u) };
+#declare Fz = function { Fr(u,v,0)*sin(u)*sin(v) };
+
+#declare maxG = 2;
+
+#declare startU = 0;
+#declare startV = 0;
+#declare endU = 2*pi;
+#declare endV = pi;
+
+#macro Apple (appleRadius)
+parametric {
+    function { Fx(u,v,0) },
+    function { Fy(u,v,0) },
+    function { Fz(u,v,0) }
+    <startU, startV>, <endU, endV>
+    contained_by { 
+    	  box {
+    	  	  <-2, -2, -2>,
+    	  	  <2, 2, 2>
+    	  }
+    }
+    accuracy 0.1
+    precompute 10 x,y,z
+    material { M_Glass3 }
+    pigment { 
+        rgbf <0.9, 0.3, 0.3, 0.95>
+    }
+    finish {
+    	  phong 0.9 
+    	  phong_size 40 
+    	  reflection 0.2 
+    }
+    interior { 
+        ior 1.5
+    }
+    scale <appleRadius, appleRadius, appleRadius>
+}
+#end

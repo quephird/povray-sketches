@@ -1,5 +1,3 @@
-#include "textures.inc"
-
 #declare Fr = function { 1.0 - cos(u) - 0.1*cos(2*u) - 0.15*cos(3*u) };
 #declare Fx = function { Fr(u,v,0)*sin(u)*cos(v) };
 #declare Fy = function { Fr(u,v,0)*cos(u) };

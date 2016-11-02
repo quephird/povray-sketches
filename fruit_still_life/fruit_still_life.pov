@@ -11,6 +11,7 @@ global_settings {
 
 #include "apple.inc"
 #include "banana.inc"
+#include "orange.inc"
 #include "pear.inc"
 #include "stem.inc"
                                 
@@ -43,25 +44,17 @@ object {
     Pear()
     translate <0, 0, 0>
 }
+
+object {
+    Orinj()
+    translate <4.5, 2, -1>
+}
+
 object {
     Banana()
     translate<0, 0, -3>
 }
 
-// Orange
-sphere {
-    <4.5, 2, -1>, 2
-    material { M_Glass3 }
-    pigment { rgbf <0.8, 0.5, 0.2, 0.95> }
-    finish {
-    	  phong 0.9
-    	  phong_size 40
-        reflection 0.2
-    }
-    interior{ ior 1.5 }
-}
-
-//Banana
 
 // Table top
 superellipsoid { 

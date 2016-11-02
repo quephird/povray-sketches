@@ -10,6 +10,7 @@ global_settings {
 #include "textures.inc"
 
 #include "apple.inc"
+#include "banana.inc"
 #include "pear.inc"
 #include "stem.inc"
                                 
@@ -42,6 +43,10 @@ object {
     Pear()
     translate <0, 0, 0>
 }
+object {
+    Banana()
+    translate<0, 0, -3>
+}
 
 // Orange
 sphere {
@@ -57,31 +62,6 @@ sphere {
 }
 
 //Banana
-sphere_sweep {
-    b_spline
-    12, 
-    <-4, 1.0, -3.0>, 0.3
-    <-3, 1.0, -2.0>, 0.3
-    <-2, 1.0, -1.0>, 1.0
-    <-1, 1.0, 0.0>, 1.0
-    <0.0, 1.0, 0.5>, 1.0
-    <1.0, 1.0, 0.5>, 1.0
-    <2.0, 1.0, 0.0>, 1.0
-    <2.5, 1.0, -1.0>, 0.8
-    <3.0, 1.0, -1.2>, 0.4
-    <3.5, 1.0, -1.5>, 0.3
-    <3.8, 1.0, -1.7>, 0.3
-    <4.0, 1.0, -2.0>, 0.3
-    pigment { rgbf <0.9, 0.9, 0.0, 0.95> }
-    finish {
-        phong 0.9
-        phong_size 40
-        reflection 0.2
-    }
-    interior { ior 1.5 }
-    translate<0, 0, -3>
-    rotate <0, 0, -10>
-}
 
 // Table top
 superellipsoid { 

@@ -24,9 +24,8 @@ parametric {
     	  	  <2, 2, 2>
     	  }
     }
-    accuracy 0.1
+    accuracy 0.01
     precompute 10 x,y,z
-    material { M_Glass3 }
     pigment { 
         rgbf <0.9, 0.3, 0.3, 0.95>
     }
@@ -39,5 +38,6 @@ parametric {
         ior 1.5
     }
     scale <appleRadius, appleRadius, appleRadius>
+    translate <0, 2*appleRadius, 0>
 }
 #end

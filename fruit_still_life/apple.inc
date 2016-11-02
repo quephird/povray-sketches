@@ -3,20 +3,13 @@
 #declare Fy = function { Fr(u,v,0)*cos(u) };
 #declare Fz = function { Fr(u,v,0)*sin(u)*sin(v) };
 
-#declare maxG = 2;
-
-#declare startU = 0;
-#declare startV = 0;
-#declare endU = 2*pi;
-#declare endV = pi;
-
 #macro Apple (appleRadius)
 union {
     parametric {
         function { Fx(u,v,0) },
         function { Fy(u,v,0) },
         function { Fz(u,v,0) }
-        <startU, startV>, <endU, endV>
+        <0, 0>, <2*pi, pi>
         contained_by {
         	  box {
         	  	  <-2, -2, -2>,

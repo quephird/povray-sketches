@@ -1,6 +1,6 @@
 #include "textures.inc"
 
-#declare Fr = function { 1.0 - cos(u) };
+#declare Fr = function { 1.0 - cos(u) - 0.1*cos(2*u) - 0.15*cos(3*u) };
 #declare Fx = function { Fr(u,v,0)*sin(u)*cos(v) };
 #declare Fy = function { Fr(u,v,0)*cos(u) };
 #declare Fz = function { Fr(u,v,0)*sin(u)*sin(v) };
@@ -24,7 +24,7 @@ parametric {
     	  	  <2, 2, 2>
     	  }
     }
-    accuracy 0.01
+    accuracy 0.1
     precompute 10 x,y,z
     pigment { 
         rgbf <0.9, 0.3, 0.3, 0.95>

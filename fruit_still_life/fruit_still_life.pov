@@ -37,11 +37,11 @@ object {
     Apple(1.5)
     translate <-4, 0, 0>
 }
+
 object {
     Pear()
     translate <0, 0, 0>
 }
-
 
 // Orange
 sphere {
@@ -86,13 +86,13 @@ sphere_sweep {
 // Table top
 superellipsoid { 
     <0.05, 0.05>
-    scale <20.0, 0.5, 10.0>
     pigment { color LightGrey }
     finish { 
         phong 0.5
         diffuse 0.1
         reflection 0.5
     }
-    rotate <0, 0, 0>
+    scale <20.0, 0.5, 10.0>
+    translate <0, -0.5, 0>
 }
  

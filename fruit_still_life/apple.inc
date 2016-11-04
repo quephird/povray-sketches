@@ -11,10 +11,10 @@ union {
         function { Fz(u,v,0) }
         <0, 0>, <2*pi, pi>
         contained_by {
-        	  box {
-        	  	  <-2, -2, -2>,
-        	  	  <2, 2, 2>
-        	  }
+            box {
+                <-2, -2, -2>,
+                <2, 2, 2>
+            }
         }
         accuracy 0.1
         precompute 10 x,y,z
@@ -36,6 +36,6 @@ union {
         Stem(1.5)
         translate<0, 3, 0>
         rotate<0, 50, 0>
-		}
+    }
 }
 #end

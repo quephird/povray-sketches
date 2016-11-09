@@ -12,6 +12,7 @@ global_settings {
 
 #include "apple.inc"
 #include "banana.inc"
+#include "bowl.inc"
 #include "orange.inc"
 #include "pear.inc"
 #include "stem.inc"
@@ -25,7 +26,7 @@ global_settings {
 // Main camera 
 camera {
     perspective angle 75   
-    location  <0.0, 8, -13.0>
+    location  <0.0, 8, -20.0>
     right     x*image_width/image_height
     look_at   <0.0, 2.5, 0.0>
 }
@@ -41,11 +42,11 @@ object {
     translate <0, 0 ,0>
 }
 
-//object {
-//    Apple(1.5)
-//    translate <-4, 0, 0>
-//}
-//
+object {
+    Apple(1.5)
+    translate <-4, 2.0, -1>
+}
+
 object {
     Pear()
     translate <0, 2.0, 0>
@@ -53,13 +54,13 @@ object {
 
 object {
     Orinj(1.5)
-    translate <4.5, 2.0, -1>
+    translate <4.5, 2.0, -1.5>
 }
-//
-//object {
-//    Banana()
-//    translate<0, 0, -3>
-//}
+
+object {
+    Banana()
+    translate<-0.5, 0, -8>
+}
 
 
 // Table top

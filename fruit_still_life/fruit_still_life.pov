@@ -8,6 +8,7 @@ global_settings {
 #include "shapes.inc"
 #include "shapes2.inc"
 #include "textures.inc"
+#include "woods.inc"
 
 #include "apple.inc"
 #include "banana.inc"
@@ -24,42 +25,50 @@ global_settings {
 // Main camera 
 camera {
     perspective angle 75   
-    location  <0.0, 8.0, -13.0>  
+    location  <0.0, 8, -13.0>
     right     x*image_width/image_height
-    look_at   <0.0, 1.0, 0.0>
+    look_at   <0.0, 2.5, 0.0>
 }
 
 // Main light
 light_source {
-	  <10, 10, -10> 
-	  color White
+    <10, 10, -10>
+    color White
 }
 
 object {
-    Apple(1.5)
-    translate <-4, 0, 0>
+    Bowl()
+    translate <0, 0 ,0>
 }
 
+//object {
+//    Apple(1.5)
+//    translate <-4, 0, 0>
+//}
+//
 object {
     Pear()
-    translate <0, 0, 0>
+    translate <0, 2.0, 0>
 }
 
 object {
-    Orinj()
-    translate <4.5, 2, -1>
+    Orinj(1.5)
+    translate <4.5, 2.0, -1>
 }
-
-object {
-    Banana()
-    translate<0, 0, -3>
-}
+//
+//object {
+//    Banana()
+//    translate<0, 0, -3>
+//}
 
 
 // Table top
 superellipsoid { 
     <0.05, 0.05>
-    pigment { color LightGrey }
+    texture {
+        T_Wood19
+        scale 0.1
+    }
     finish { 
         phong 0.5
         diffuse 0.1

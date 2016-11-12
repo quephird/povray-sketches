@@ -25,8 +25,9 @@ global_settings {
 
 // Main camera 
 camera {
-    perspective angle 75   
-    location  <0.0, 8, -20.0>
+    perspective angle 75
+    location  <0.0, 8, -25.0>
+//    location  <0.0, 25, 0.0>
     right     x*image_width/image_height
     look_at   <0.0, 2.5, 0.0>
 }
@@ -39,27 +40,35 @@ light_source {
 
 object {
     Bowl()
-    translate <0, 0 ,0>
+    translate <-2, 0 ,0>
 }
 
 object {
     Apple(1.5)
-    translate <-4, 2.0, -1>
+    translate <-5, 4.0, 2.7>
 }
 
 object {
     Pear()
-    translate <0, 2.0, 0>
+    translate <-2, 4.0, 4.0>
 }
 
 object {
     Orinj(1.5)
-    translate <4.5, 2.0, -1.5>
+    translate <2.5, 4.0, 2.2>
 }
 
 object {
     Banana()
-    translate<-0.5, 0, -8>
+    rotate<0, 100, 0>
+    translate<6, 0, -3>
+}
+object {
+    Banana()
+    scale <0.9, 0.9, 0.9>
+    rotate <0, 0, 180>
+    rotate <0, 95, 0>
+    translate <9.5, 2.0, -3>
 }
 
 

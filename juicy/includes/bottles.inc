@@ -43,7 +43,7 @@ box {
     }
 #end
 
-#macro LaLaBottle (l, h, w)
+#macro LaLaBottle (l, h, w, bottleColor)
 union {
 	  // Body
 	  difference {
@@ -58,7 +58,7 @@ union {
 		        translate <0, 0.55*h, 0>
 		    }
         interior { ior 1.5 }
-        pigment { color rgbf <1.0, 1.0, 1.0, 1.0> }
+        pigment { color bottleColor }
         finish { 
             phong 1.0 
             diffuse 0.7

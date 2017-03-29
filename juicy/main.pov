@@ -23,7 +23,7 @@ global_settings { assumed_gamma 1.0 }
 camera {
     perspective angle 75
     right     x*image_width/image_height
-    location  <0.0, 4.0, -4.0>
+    location  <0.0, 4.0, -6.0>
     look_at   <0.0, 2.0, 0.0>
 }
 
@@ -33,10 +33,25 @@ light_source{
 	  color White
 }
 
+// Peace, Love, and Juicy Couture
 object { 
-    LaLaBottle(2.0, 2.4, 1.2)
+    LaLaBottle(2.0, 2.4, 1.2, <1.0, 1.0, 1.0, 1.0>)
     rotate    <0, 10, 0>
+    translate <-2.0, 0, 0.0>
+}
+
+// Malibu
+object {
+    LaLaBottle(1.2, 3.6, 1.2, <1.0, 0.7, 0.6, 1.0>)
+    rotate    <0, -5, 0>
     translate <0, 0, 0.0>
+}
+
+// La La Malibu
+object {
+    LaLaBottle(1.0, 3.0, 1.0, <1.0, 0.7, 0.7, 1.0>)
+    rotate    <0, 5, 0>
+    translate <2.0, 0, 0.0>
 }
 
 // Marble counter top

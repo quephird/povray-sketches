@@ -23,8 +23,8 @@ global_settings { assumed_gamma 1.0 }
 camera {
     perspective angle 75
     right     x*image_width/image_height
-    location  <0.0, 3.0, -6.0>  
-    look_at   <0.0, 1.0, 0.0>
+    location  <0.0, 4.0, -4.0>
+    look_at   <0.0, 2.0, 0.0>
 }
 
 // Main light
@@ -34,8 +34,8 @@ light_source{
 }
 
 object { 
-    LaLaBottle()
-    rotate    <0, 20, 0>
+    LaLaBottle(2.0, 2.4, 1.2)
+    rotate    <0, 10, 0>
     translate <0, 0, 0.0>
 }
 

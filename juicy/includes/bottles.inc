@@ -71,7 +71,7 @@ union {
         scale <0.39*l, 0.2*h, 0.39*w>
         translate <0, 0.35*h, 0>
 		    interior { ior 1.5 }
-		    pigment { color rgbf <1.0, 1.0, 0.6, 0.5> }
+		    pigment { color rgbf <1.0, 1.0, 0.6, 0.9> }
 		    finish { 
 		        phong 1.0 
 		        diffuse 0.7

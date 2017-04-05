@@ -91,7 +91,6 @@
             <1.0, 1.3>
         }
         scale <0.79, 0.79, 0.79>
-        translate <0.0, 0.3, 0.0>
         interior { ior 1.5 }
         pigment { color rgbf <1.0, 1.0, 0.6, 0.9> }
         finish {
@@ -126,7 +125,6 @@
             translate <0, 0.5, -0.17>
         }
 
-        translate <0, 2.65, 0>
         texture {
             pigment { Gold }
             finish {
@@ -143,7 +141,13 @@
 #macro CoutureCoutureBottle ()
 union {
     Body()
-    Perfume()
-    Atomizer()
+    object {
+        Perfume()
+        translate <0.0, 0.3, 0.0>
+    }
+    object {
+        Atomizer()
+        translate <0, 2.65, 0>
+    }
 }
 #end

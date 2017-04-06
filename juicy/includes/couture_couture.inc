@@ -181,6 +181,19 @@
                 }
             }
         }
+        // Top
+        cone {
+            <0, 0, 0>, 0.35,
+            <0, 0.2, 0>, 0.15
+            translate <0, 0.7, 0>
+            interior { ior 1.5 }
+            pigment { color rgbf <1.0, 1.0, 1.0, 0.9> }
+            finish {
+                phong 1.0
+                diffuse 0.7
+                reflection 0.3
+            }
+        }
     }
 #end
 

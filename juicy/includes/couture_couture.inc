@@ -138,6 +138,52 @@
     }
 #end
 
+#macro Cap ()
+    union {
+        difference {
+            // Cap exterior
+            cylinder {
+                <0, 0, 0>, <0, 0.7, 0.0>, 0.4
+            }
+            // Cap interior
+            cylinder {
+                <0, 0, 0>, <0, 0.7, 0.0>, 0.35
+            }
+            // Reeding around cap
+            #for (i, 0, 99)
+                box {
+                    <-0.01, 0, -0.01>, <0.01, 0.7, 0.01>
+                    rotate <0, 45, 0>
+                    translate <-0.4, 0, 0>
+                    rotate <0, 3.6*i, 0>
+                }
+            #end
+            interior { ior 1.5 }
+            pigment { color rgbf <1.0, 1.0, 1.0, 0.9> }
+            finish {
+                phong 1.0
+                diffuse 0.7
+                reflection 0.3
+            }
+        }
+        // Gold ring around cap
+        torus {
+            0.4, 0.05
+            translate <0, 0.35, 0>
+            texture {
+                pigment { Gold }
+                finish {
+                    ambient .1
+                    diffuse 0.1
+                    specular 1
+                    roughness .001
+                    reflection { 2.0 }
+                }
+            }
+        }
+    }
+#end
+
 #macro CoutureCoutureBottle ()
 union {
     Body()
@@ -147,6 +193,10 @@ union {
     }
     object {
         Atomizer()
+        translate <0, 2.65, 0>
+    }
+    object {
+        Cap()
         translate <0, 2.65, 0>
     }
 }

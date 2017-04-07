@@ -194,6 +194,36 @@
                 reflection 0.3
             }
         }
+        // Ornament
+        union {
+            // Main body
+            sphere {
+                <0, 0, 0>, 1
+                scale <0.4, 0.45, 0.1>
+                translate <0, 1.35, 0>
+            }
+            // Spheres along top
+            #for (i, 0, 6)
+                sphere {
+                    <0, 0, 0> 0.009*i+0.04
+                    translate <0.4*cos((i*i-4.5)*2*3.14*20/360/8), 1.35+0.45*sin((i*i-4.5)*2*3.14*20/360/8), 0>
+                }
+                sphere {
+                    <0, 0, 0> 0.009*i+0.04
+                    translate <-0.4*cos((i*i-4.5)*2*3.14*20/360/8), 1.35+0.45*sin((i*i-4.5)*2*3.14*20/360/8), 0>
+                }
+            #end
+            texture {
+                pigment { Gold }
+                finish {
+                    ambient .1
+                    diffuse 0.1
+                    specular 1
+                    roughness .001
+                    reflection { 2.0 }
+                }
+            }
+        }
     }
 #end
 
